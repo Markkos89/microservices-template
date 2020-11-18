@@ -18,4 +18,4 @@ COPY ${basedir}/ .
 RUN apk update && apk add bash
 
 EXPOSE 9000
-CMD npm start
+

@@ -13,3 +13,5 @@ RUN yarn install --pure-lockfile
 COPY --chown=node:node . .
 
 EXPOSE 9010
+
+CMD "npm start"
