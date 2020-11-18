@@ -1,46 +1,46 @@
-version: '3'
+version: "3"
 
 services:
   frontend:
     image: ${DOCKER_REG}microservice-example-1/frontend${DOCKER_TAG}
-    build: 
+    build:
       context: .
       dockerfile: frontend/Dockerfile
-      args: 
+      args:
         build_config: production
-    ports: 
+    ports:
       - 9000:3000
     environment:
       - PORT=3000
       - SERVICE_API1_ENDPOINT=http://localhost:9010/api
-    networks: 
+    networks:
       - microservice-example-network
 
   backend-api1:
     image: ${DOCKER_REG}microservice-example-1/backend-api1${DOCKER_TAG}
-    build: 
+    build:
       context: .
       dockerfile: backend-api1/Dockerfile
-      args: 
+      args:
         build_info: Built from Docker compose
-    ports: 
+    ports:
       - 9010:3010
     depends_on:
-      - frontend     
+      - frontend
     environment:
       - PORT=3010
       - SERVICE_API2_ENDPOINT=http://backend-api2:3020/api
-    networks: 
+    networks:
       - microservice-example-network
 
   backend-api2:
     image: ${DOCKER_REG}microservice-example-1/backend-api2${DOCKER_TAG}
-    build: 
+    build:
       context: .
       dockerfile: backend-api2/Dockerfile
-      args: 
+      args:
         build_info: Built from Docker compose
-    #ports: 
+    #ports:
     #  - 9020:3020
     expose:
       - 3020
@@ -48,7 +48,7 @@ services:
       - backend-api1
     environment:
       - PORT=3020
-    networks: 
+    networks:
       - microservice-example-network
 
 networks:

@@ -1,20 +1,15 @@
-FROM node:8-alpine
+FROM node:alpine
 
-LABEL version="1.0.0" 
-ARG basedir="backend-api1"
-WORKDIR ${basedir}/ .
+RUN mkdir -p /usr/src/node-app && chown -R node:node /usr/src/node-app
 
-# Copy package.json
-COPY ${basedir}/package*.json ./
+WORKDIR /usr/src/node-app
 
-# Install npm packages
-RUN npm install --silent
+COPY package.json yarn.lock ./
 
-# Copy project files to the workdir.
-COPY ${basedir}/ .
+USER node
 
-# Install bash inside container. Only if you need to debug app inside of the container.
-RUN apk update && apk add bash
+RUN yarn install --pure-lockfile
+
+COPY --chown=node:node . .
 
 EXPOSE 9010
-CMD npm start
