@@ -1,6 +1,3 @@
-![Build status](https://spylkkanen.visualstudio.com/kubernetes-microservices/_apis/build/status/kubernetes-microservices-Docker%20container-CI)
-![Release status](https://spylkkanen.vsrm.visualstudio.com/_apis/public/Release/badge/91705780-23f2-4c51-8f8d-bd251a855be4/1/1)
-
 # Overview
 This is simple nodejs based application designed to showcase microservices in docker and kubernetes. Application contains one web application and two REST api services where one of the service is internal which is not directly accessible from internet.
 
