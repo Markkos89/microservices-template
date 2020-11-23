@@ -3,5 +3,8 @@
   // You will need to change these as required!
   //
   "appservice-site": "smilr-live",
-  "appservice-user": "bcdeployer"
+  "appservice-user": "bcdeployer",
+  "conventionalCommits.scopes": [
+    "refactor"
+  ]
 }

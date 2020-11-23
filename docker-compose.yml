@@ -13,7 +13,6 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3001
-      - SERVICE_API2_ENDPOINT=http://backend-api2:3020/api
     command: npm run dev
 
   backend-api2:
@@ -28,7 +27,22 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3002
-      - SERVICE_API2_ENDPOINT=http://backend-api2:3020/api
+    command: npm run dev
+
+  gateway-api:
+    image: node:lts-alpine
+    container_name: gateway-api
+    restart: always
+    ports:
+      - 5000:5000
+    working_dir: /gateway
+    volumes:
+      - ./gateway:/gateway
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - SERVICE_API1_ENDPOINT=http://backend-api1:3001/api1
+      - SERVICE_API2_ENDPOINT=http://backend-api2:3002/api2
     command: npm run dev
 
   frontend:
