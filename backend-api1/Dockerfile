@@ -1,10 +1,13 @@
 FROM node:lts-alpine
 
-WORKDIR /src
+#==============#
+# PROVISIONING #
+#==============#
+WORKDIR /
 COPY package*.json ./
 
 RUN npm install
-COPY . /app
+COPY . /
 
 CMD npm run start
-EXPOSE 3010
+EXPOSE 3001
