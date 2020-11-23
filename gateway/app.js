@@ -14,7 +14,8 @@ const gateway = {
 app.get("/api", async (req, res) => {
     const { api } = req.query
     const url = gateway[api]
-    const data = await fetch(url)
+    const response = await fetch(url)
+    const data = await response.json()
     res.json({api, data})
 })
 

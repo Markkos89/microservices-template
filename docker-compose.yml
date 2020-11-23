@@ -43,6 +43,9 @@ services:
       - PORT=5000
       - SERVICE_API1_ENDPOINT=http://backend-api1:3001/api1
       - SERVICE_API2_ENDPOINT=http://backend-api2:3002/api2
+    links: 
+      - backend-api1
+      - backend-api2
     command: npm run dev
 
   frontend:
